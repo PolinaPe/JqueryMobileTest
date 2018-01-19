@@ -1,0 +1,136 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="ThemeFuerAppJanuar.min.css" />
+	<link rel="stylesheet" href="jquery.mobile.icons.min.css" />
+    <script type="text/javascript" src="jquery-1.9.js"></script>
+    <script type="text/javascript" src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+
+</head>
+<body>
+	<div data-role="page" id="homePage" data-theme="a">
+		<div data-role="header">
+		<h1>Page Title</h1> 
+		<div data-role="navbar">
+				
+	<ul>
+		<li><a href="#homePage">Home</a></li>			
+		<li><a href='jsonSeite.html' rel="external">External Seite</a></li>
+		<li><a href="#pageThree">Three</a></li>
+		<li><a href="#pageFour">Four</a></li>
+		<li><a href="#popupBasic" data-rel="popup" data-transition="pop">Drop-Menu Beispiel</a></li>
+	</ul>
+</div><!-- /navbar -->
+<div data-role="popup" id="popupBasic">
+<ul data-role="listview" data-inset="true" style="min-width:210px;">
+            <li data-role="list-divider">Auswahlliste</li>
+            <li><a "#homePage">Home</a></li>
+            <li><a href='jsonSeite.html' rel="external">External Seite</a></li>
+            <li><a href="#pageThree">Three</a></li>
+            <li><a href="#pageFour">Four</a></li>
+        </ul>
+</div>
+		
+		</div>
+		<div data-role="content" data-theme="a">
+				<h1>Page Inhalt</h1> 		
+		</div>		
+		<div data-role="footer" data-theme="a">		
+		</div>
+	</div>
+	
+	<div data-role="page" id="pageThree" data-theme="b">
+		<div data-role="header">
+		<h1>Page Title</h1> 
+		<div data-role="navbar">
+				
+	<ul>
+		<li><a href="#homePage">Home</a></li>			
+		<li><a href='jsonSeite.html' rel="external">External Seite</a></li>
+		<li><a href="#pageThree">Three</a></li>
+		<li><a href="#pageFour">Four</a></li>
+		<li><a href="#popupBasic" data-rel="popup" data-transition="pop">Drop-Menu Beispiel</a></li>
+	</ul>
+</div><!-- /navbar -->
+<div data-role="popup" id="popupBasic">
+<ul data-role="listview" data-inset="true" style="min-width:210px;">
+            <li data-role="list-divider">Auswahlliste</li>
+            <li><a "#homePage">Home</a></li>
+            <li><a href='jsonSeite.html' rel="external">External Seite</a></li>
+            <li><a href="#pageThree">Three</a></li>
+            <li><a href="#pageFour">Four</a></li>
+        </ul>
+</div>
+		
+		</div>
+	 <div data-role="content" data-theme="b">
+            <p>Json Versuch</p>		
+			<input type="button" onclick="bekommen();" value="Bekommen">
+            <button onclick="leer();">Leeren Data</button>
+            <div id="live_data"></div>
+		</div>
+		<div data-role="footer" data-theme="b">		
+		</div></div>
+		
+		
+		
+	<div data-role="page" id="pageFour" data-theme="a">
+	<div data-role="header">
+		<h1>Page Title</h1> 
+		<div data-role="navbar">
+				
+	<ul>
+		<li><a href="#homePage">Home</a></li>			
+		<li><a href='jsonSeite.html' rel="external">External Seite</a></li>
+		<li><a href="#pageThree">Three</a></li>
+		<li><a href="#pageFour">Four</a></li>
+		<li><a href="#popupBasic" data-rel="popup" data-transition="pop">Drop-Menu Beispiel</a></li>
+	</ul>
+</div><!-- /navbar -->
+
+		
+		</div>
+	 <div data-role="content" data-theme="a">
+        <div id="auto_data"></div>
+		</div>
+		<div data-role="footer" data-theme="a">		
+		</div></div>
+	
+	 <script type="text/javascript">
+	 document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    // Now safe to use the PhoneGap API
+}
+	function bekommen(){
+		 
+		 
+   $.ajax({
+  url: 'http://ip.jsontest.com/',
+  method: 'GET',
+ dataType:'json',		 
+contentType: "application/json; charset=UTF-8",
+      success: function(response){
+		  
+		    var jsonObj=JSON.stringify(response);
+		 $('#live_data').html(jsonObj);
+		   $('#auto_data').html(jsonObj);
+     
+      },
+	  error: function (request, status, error) {
+       alert(request.responseText);
+	   
+    }
+	 }); }
+	 function leer() {
+
+	 $('#live_data').html("");
+	 $('#auto_data').html("");
+	 
+	 }
+</script>
+</body>
+</html>
